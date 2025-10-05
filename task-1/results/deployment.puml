@@ -1,0 +1,25 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container(etl, "ETL", "Apache AirFlow", "Сервис обработки и подготовки данных для анализа")
+
+Container(db, "База Данных", "PostgreSQL", "Заказы, Статусы доставок")
+
+Container(file_storage, "Файловое хранилище", "S3-хранилище", "Заказы, Платежи, Пользователи")
+
+Container(event_bus, "Шина данных", "kafka", "События изменения заказов")
+
+Container_Ext(smtp, "SMTP сервер")
+
+Container_Ext(analytics_db, "База Данных Аналитики", "", "Аналитика")
+
+Rel(db, etl, "Сырые данные")
+Rel(file_storage, etl, "Файлы")
+Rel(event_bus, etl, "События")
+
+Rel(etl, smtp, "Уведомления")
+
+Rel(etl, analytics_db, "Подготовленные данные")
+
+@enduml
