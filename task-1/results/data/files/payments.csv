@@ -1,0 +1,11 @@
+order_id,amount,status
+1,134,"completed"
+2,11,"failed"
+3,20,"waiting"
+4,31231,"completed"
+5,131,"waiting"
+6,90,"waiting"
+7,123,"completed"
+8,984,"completed"
+9,1415,"completed"
+10,1511,"failed"

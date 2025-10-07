@@ -45,3 +45,10 @@ Apache AirFlow поддерживает возможность разверты�
 - Настройка retry-политики для шагов пайплайна.
 
 В результате у вас должно получиться обоснование выбранного решения, файл (или файлы) с кодом/конфигурацией пайплайна и демонстрация его в локальном развёртывании в виде скринкаста или скриншотов.
+
+![](./report/read_from_csv_file.jpg)
+![](./report/read_from_db_table.jpg)
+![](./report/retries-example.jpg)
+![](./report/branching_skip.jpg)
+![](./report/email_operator.jpg)
+![](./report/email.jpg)
