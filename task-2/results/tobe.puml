@@ -1,0 +1,23 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Component_Ext(smtp, "SMTP Сервер")
+
+ComponentDb(db, "БД прайс-листов", "PostgresSQL", "Актуальные данные о ценах на товары")
+Component(k8s_job, "K8s Job", "", "")
+Container(job, "Задача выгрузки", "SpringBatch")
+
+Container(elk, "ELK", "", "Логирование")
+Container(prometheus, "Prometheus/Grafana", "", "Метрики")
+
+Rel_Right(k8s_job, job, "Запускает", "Каждое утро в 06:00")
+
+Rel(db, job, "Данные")
+
+Rel(job, smtp, "Отчет в csv")
+
+Rel_Up(prometheus, job, "Сбор метрик")
+Rel_Up(elk, job, "Сбор логов")
+
+@enduml
