@@ -1,0 +1,7 @@
+{
+    "name": "msa5-task-exporter",
+    "private": true,
+    "dependencies": {
+        "mysql2": "^3.15.2"
+    }
+}
