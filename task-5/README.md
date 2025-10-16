@@ -18,7 +18,7 @@
 **Создание образа**
 
    ```
-   docker build . -t batch-processin
+   docker build . -t batch-processing
    ```
 
 
@@ -39,7 +39,7 @@
 - batch-processing
 - grafana
 - prometheus
-- filebnat
+- filebeat
 - logstash
 - elasticsearch
 

@@ -1,0 +1,5 @@
+rules:
+  - pattern: "java.lang<type=OperatingSystem><>ProcessCpuLoad"
+    name: "process_cpu_usage"
+    type: GAUGE
+  - pattern: ".*"

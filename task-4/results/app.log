@@ -1,0 +1,34 @@
+app-1  | 
+app-1  |   .   ____          _            __ _ _
+app-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+app-1  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+app-1  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+app-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
+app-1  |  =========|_|==============|___/=/_/_/_/
+app-1  | 
+app-1  |  :: Spring Boot ::                (v3.5.3)
+app-1  | 
+app-1  | 2025-10-12T22:22:24.041Z  INFO 1 --- [           main] c.e.b.BatchProcessingApplication         : Starting BatchProcessingApplication v0.0.1-SNAPSHOT using Java 24 with PID 1 (/app.jar started by root in /)
+app-1  | 2025-10-12T22:22:24.049Z  INFO 1 --- [           main] c.e.b.BatchProcessingApplication         : No active profile set, falling back to 1 default profile: "default"
+app-1  | 2025-10-12T22:22:24.971Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+app-1  | 2025-10-12T22:22:25.255Z  INFO 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@c6a6c1d
+app-1  | 2025-10-12T22:22:25.256Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+app-1  | 2025-10-12T22:22:25.775Z  INFO 1 --- [           main] c.e.b.BatchProcessingApplication         : Started BatchProcessingApplication in 2.503 seconds (process running for 3.46)
+app-1  | 2025-10-12T22:22:25.781Z  INFO 1 --- [           main] o.s.b.a.b.JobLauncherApplicationRunner   : Running default command line with: []
+app-1  | 2025-10-12T22:22:25.861Z  INFO 1 --- [           main] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=importProductJob]] launched with the following parameters: [{}]
+app-1  | 2025-10-12T22:22:25.903Z  INFO 1 --- [           main] o.s.batch.core.job.SimpleStepHandler     : Executing step: [step1]
+app-1  | 2025-10-12T22:22:25.940Z  INFO 1 --- [           main] c.e.b.ProductItemProcessor               : Transforming (Product[productId=1, productSku=20001, productName=hammer, productAmount=45, productData=Loyality_off]) into (Product[productId=1, productSku=20001, productName=hammer, productAmount=45, productData=Loyality_off])
+app-1  | 2025-10-12T22:22:25.948Z  INFO 1 --- [           main] c.e.b.ProductItemProcessor               : Transforming (Product[productId=2, productSku=30001, productName=sink, productAmount=20, productData=Loyality_off]) into (Product[productId=2, productSku=30001, productName=sink, productAmount=20, productData=Loyality_off])
+app-1  | 2025-10-12T22:22:25.949Z  INFO 1 --- [           main] c.e.b.ProductItemProcessor               : Transforming (Product[productId=3, productSku=40001, productName=roof_shell, productAmount=256, productData=Loyality_on]) into (Product[productId=3, productSku=40001, productName=roof_shell, productAmount=256, productData=Loyality_on])
+app-1  | 2025-10-12T22:22:25.966Z  INFO 1 --- [           main] c.e.b.ProductItemProcessor               : Transforming (Product[productId=4, productSku=50001, productName=priming, productAmount=67, productData=Loyality_off]) into (Product[productId=4, productSku=50001, productName=priming, productAmount=67, productData=Loyality_off])
+app-1  | 2025-10-12T22:22:25.967Z  INFO 1 --- [           main] c.e.b.ProductItemProcessor               : Transforming (Product[productId=5, productSku=60001, productName=clapboard, productAmount=120, productData=Loyality_on]) into (Product[productId=5, productSku=60001, productName=clapboard, productAmount=120, productData=Loyality_on])
+app-1  | 2025-10-12T22:22:25.978Z  INFO 1 --- [           main] o.s.batch.core.step.AbstractStep         : Step: [step1] executed in 73ms
+app-1  | 2025-10-12T22:22:25.997Z  INFO 1 --- [           main] c.e.b.JobCompletionNotificationListener  : !!! JOB FINISHED! Time to verify the results
+app-1  | 2025-10-12T22:22:25.999Z  INFO 1 --- [           main] c.e.b.JobCompletionNotificationListener  : Transformed <Product[productId=1, productSku=20001, productName=hammer, productAmount=45, productData=Loyality_off]> in the database.
+app-1  | 2025-10-12T22:22:25.999Z  INFO 1 --- [           main] c.e.b.JobCompletionNotificationListener  : Transformed <Product[productId=2, productSku=30001, productName=sink, productAmount=20, productData=Loyality_off]> in the database.
+app-1  | 2025-10-12T22:22:26.001Z  INFO 1 --- [           main] c.e.b.JobCompletionNotificationListener  : Transformed <Product[productId=3, productSku=40001, productName=roof_shell, productAmount=256, productData=Loyality_on]> in the database.
+app-1  | 2025-10-12T22:22:26.002Z  INFO 1 --- [           main] c.e.b.JobCompletionNotificationListener  : Transformed <Product[productId=4, productSku=50001, productName=priming, productAmount=67, productData=Loyality_off]> in the database.
+app-1  | 2025-10-12T22:22:26.002Z  INFO 1 --- [           main] c.e.b.JobCompletionNotificationListener  : Transformed <Product[productId=5, productSku=60001, productName=clapboard, productAmount=120, productData=Loyality_on]> in the database.
+app-1  | 2025-10-12T22:22:26.007Z  INFO 1 --- [           main] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=importProductJob]] completed with the following parameters: [{}] and the following status: [COMPLETED] in 126ms
+app-1  | 2025-10-12T22:22:26.015Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+app-1  | 2025-10-12T22:22:26.020Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

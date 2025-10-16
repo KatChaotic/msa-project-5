@@ -1,0 +1,76 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: drivers-export
+  labels:
+    app: drivers-export
+    component: data-export
+spec:
+  schedule: "0 20 * * *"
+  timeZone: "Europe/Moscow"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 5
+  jobTemplate:
+    metadata:
+      labels:
+        app: drivers-export
+        component: data-export
+    spec:
+      backoffLimit: 3
+      activeDeadlineSeconds: 3600  # Максимум 1 час на выполнение
+      ttlSecondsAfterFinished: 86400  # Удалить джобу через 24 часа после завершения
+      template:
+        metadata:
+          labels:
+            app: drivers-export
+            component: data-export
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: exporter
+            image: msa5-task-exporter:latest
+            imagePullPolicy: IfNotPresent
+            env:
+            - name: DB_HOST
+              value: "mysql"
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              value: "password"
+            - name: DB_NAME
+              value: "logistic_db"
+            - name: NODE_ENV
+              value: "production"
+            resources:
+              requests:
+                memory: "256Mi"
+                cpu: "100m"
+              limits:
+                memory: "512Mi"
+                cpu: "500m"
+            volumeMounts:
+            - name: export-data
+              mountPath: /opt/exports
+            securityContext:
+              runAsUser: 1000
+              runAsGroup: 1000
+              allowPrivilegeEscalation: false
+          volumes:
+          - name: export-data
+            persistentVolumeClaim:
+              claimName: export-data-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: export-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard

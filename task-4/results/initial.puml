@@ -1,0 +1,28 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Person(person, "Сотрудник склада", "Использует web приложение загрузки отчета")
+
+Container(frontend, "Frontend", "JS, Angular", "Приложение для пользователя, веб-интерфейс")
+
+Container_Boundary(backend, "Backend (GCP/ComputeEngine)") {
+    Component(server, "Server", "WildFly/Java", "Сервер Java приложения с логикой обработки отчетов")
+
+    ComponentDb(db_storage, "DB Storage", "PostgresSql", "Актуальные данные о наличии товаров на складах")
+
+    ComponentDb(db_products, "DB Products", "PostgresSql", "Данные о характеристиках товаров, промоакциях и т.д.")
+
+    ComponentDb(files, "File Storage", "Google Cloud Storage", "Загруженные файлы отчетов")
+}
+
+Rel(person, frontend, "Использует")
+
+Rel(frontend, server, "Вызывает", "Rest API JSON/HTTP")
+
+Rel(server, db_storage, "Читает и пишет", "Sql")
+Rel(server, db_products, "Читает", "Sql")
+
+Rel(server, files, "Читает и загружает", "blob")
+
+@enduml
